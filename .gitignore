@@ -1,0 +1,10 @@
+build/
+build*/
+*.obj
+*.exe
+*.db
+*.log
+.qtcreator/
+CMakeFiles/
+CMakeCache.txt
+*.autosave
