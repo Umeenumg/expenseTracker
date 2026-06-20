@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LoginWindow</class>
+ <widget class="QDialog" name="LoginWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>669</width>
+    <height>320</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>420</width>
+    <height>320</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Login</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">* {
+    background-color: #0f0f14;
+    color: #e2e2e8;
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+}
+QDialog {
+    background-color: #13131a;
+}
+QLabel#titleLabel {
+    font-size: 22px;
+    font-weight: 700;
+    color: #a78bfa;
+}
+QLabel#subtitleLabel {
+    font-size: 12px;
+    color: #4b5563;
+}
+QLabel#errorLabel {
+    font-size: 12px;
+    color: #f87171;
+    background-color: #2a0f0f;
+    border: 1px solid rgba(248,113,113,0.25);
+    border-radius: 6px;
+    padding: 7px 10px;
+}
+QLineEdit {
+    background-color: #0f0f14;
+    border: 1px solid #1e1e2e;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #e2e2e8;
+    font-size: 13px;
+    min-height: 18px;
+}
+QLineEdit:focus { border-color: #7c3aed; }
+QLineEdit:hover { border-color: #2e2e4e; }
+QPushButton#loginButton {
+    background-color: #4f46e5;
+    border: none;
+    border-radius: 8px;
+    padding: 11px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 20px;
+}
+QPushButton#loginButton:hover { background-color: #4338ca; }
+QPushButton#loginButton:pressed { background-color: #3730a3; }
+QPushButton#registerButton {
+    background-color: transparent;
+    border: none;
+    color: #7c3aed;
+    font-size: 12px;
+    padding: 4px;
+}
+QPushButton#registerButton:hover { color: #a78bfa; }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="text">
+      <string>Expense Tracker</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="subtitleLabel">
+     <property name="text">
+      <string>Sign in to your account</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="usernameEdit">
+     <property name="placeholderText">
+      <string>Username</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="passwordEdit">
+     <property name="echoMode">
+      <enum>QLineEdit::EchoMode::Password</enum>
+     </property>
+     <property name="placeholderText">
+      <string>Password</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="errorLabel">
+     <property name="visible">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="loginButton">
+     <property name="text">
+      <string>Login</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="registerButton">
+     <property name="text">
+      <string>Don't have an account? Register</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

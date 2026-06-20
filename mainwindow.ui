@@ -1,0 +1,1700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>650</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Expense Tracker</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* ═══════════════════════════════════════
+   BASE
+═══════════════════════════════════════ */
+QMainWindow, QDialog, QWidget {
+    background-color: #0a0a0f;
+    color: #e2e2e8;
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size: 13px;
+}
+
+/* ═══════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════ */
+QFrame#sidebar {
+    background-color: #0d0d14;
+    border-right: 1px solid #1a1a28;
+    min-width: 210px;
+    max-width: 210px;
+}
+
+QLabel#appTitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    padding: 20px 16px 4px 16px;
+    letter-spacing: -0.3px;
+}
+
+QLabel#userLabel {
+    font-size: 12px;
+    color: #9ca3af;
+    padding: 4px 16px 16px 16px;
+    border-bottom: 1px solid #1a1a28;
+}
+
+/* ── NAV BUTTONS ── */
+QFrame#sidebar QPushButton {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 9px 12px;
+    text-align: left;
+    color: #6b7280;
+    font-size: 13px;
+    margin: 1px 8px;
+}
+
+QFrame#sidebar QPushButton:hover {
+    background-color: #13131f;
+    color: #c4b5fd;
+    border-color: transparent;
+}
+
+QFrame#sidebar QPushButton:checked {
+    background-color: rgba(124, 58, 237, 0.15);
+    color: #a78bfa;
+    font-weight: 600;
+    border: 1px solid rgba(167, 139, 250, 0.2);
+}
+
+QFrame#sidebar QPushButton#logoutBtn {
+    color: #4b5563;
+    margin-top: 4px;
+}
+
+QFrame#sidebar QPushButton#logoutBtn:hover {
+    background-color: #1f0f0f;
+    color: #f87171;
+    border-color: rgba(248, 113, 113, 0.15);
+}
+
+/* ═══════════════════════════════════════
+   TOP BAR
+═══════════════════════════════════════ */
+QFrame#topBar {
+    background-color: #0d0d14;
+    border-bottom: 1px solid #1a1a28;
+    min-height: 52px;
+    max-height: 52px;
+    padding: 0 20px;
+}
+
+QLabel#pageTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f1f0f8;
+}
+
+QLabel#topUserLabel {
+    font-size: 12px;
+    color: #4b5563;
+}
+
+/* ═══════════════════════════════════════
+   STAT CARDS
+═══════════════════════════════════════ */
+
+QFrame#balanceCard,
+QFrame#incomeCard,
+QFrame#expenseCard,
+QFrame#countCard,
+QFrame#totalCatCard,
+QFrame#mostUsedCard,
+QFrame#unusedCard {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 10px;
+    padding: 18px 16px;
+    min-height: 90px;
+}
+
+QFrame#balanceCard  { border-top: 2px solid #7c3aed; }
+QFrame#incomeCard   { border-top: 2px solid #059669; }
+QFrame#expenseCard  { border-top: 2px solid #dc2626; }
+QFrame#countCard    { border-top: 2px solid #2563eb; }
+QFrame#totalCatCard { border-top: 2px solid #2563eb; }
+QFrame#mostUsedCard { border-top: 2px solid #7c3aed; }
+QFrame#unusedCard   { border-top: 2px solid #d97706; }
+
+QFrame#balanceCard  QLabel:first-child,
+QFrame#incomeCard   QLabel:first-child,
+QFrame#expenseCard  QLabel:first-child,
+QFrame#countCard    QLabel:first-child,
+QFrame#totalCatCard QLabel:first-child,
+QFrame#mostUsedCard QLabel:first-child,
+QFrame#unusedCard   QLabel:first-child {
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+QFrame#balanceCard  QLabel:last-child { color: #a78bfa; font-size: 26px; font-weight: 700; }
+QFrame#incomeCard   QLabel:last-child { color: #4ade80; font-size: 26px; font-weight: 700; }
+QFrame#expenseCard  QLabel:last-child { color: #f87171; font-size: 26px; font-weight: 700; }
+QFrame#countCard    QLabel:last-child { color: #60a5fa; font-size: 26px; font-weight: 700; }
+QFrame#totalCatCard QLabel:last-child { color: #60a5fa; font-size: 26px; font-weight: 700; }
+QFrame#mostUsedCard QLabel:last-child { color: #a78bfa; font-size: 26px; font-weight: 700; }
+QFrame#unusedCard   QLabel:last-child { color: #fbbf24; font-size: 26px; font-weight: 700; }
+
+/* ═══════════════════════════════════════
+   SUMMARY BAR
+═══════════════════════════════════════ */
+QFrame#frameSummary {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+QLabel#lblIncome  { color: #4ade80; font-weight: 700; font-size: 13px; }
+QLabel#lblExpense { color: #f87171; font-weight: 700; font-size: 13px; }
+QLabel#lblBalance { color: #a78bfa; font-weight: 700; font-size: 13px; }
+QLabel#lblCount   { color: #4b5563; font-size: 12px; }
+QLabel#lblIncomeTitle,
+QLabel#lblExpenseTitle,
+QLabel#lblBalanceTitle { color: #374151; font-size: 12px; }
+
+/* ═══════════════════════════════════════
+   TABLES
+═══════════════════════════════════════ */
+QTableWidget {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 10px;
+    gridline-color: transparent;
+    selection-background-color: #1a1a30;
+    selection-color: #e2e2e8;
+    outline: none;
+}
+
+QTableWidget::item {
+    padding: 10px 12px;
+    border-bottom: 1px solid #111120;
+    color: #6b7280;
+}
+
+QTableWidget::item:selected {
+    background-color: #1a1a30;
+    color: #e2e2e8;
+}
+
+QTableWidget::item:hover {
+    background-color: #0f0f1a;
+    color: #9ca3af;
+}
+
+QHeaderView::section {
+    background-color: #080810;
+    color: #374151;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 8px 12px;
+    border: none;
+    border-bottom: 1px solid #1a1a28;
+    font-weight: 500;
+}
+
+QHeaderView::section:first { border-top-left-radius: 10px; }
+QHeaderView::section:last  { border-top-right-radius: 10px; }
+
+QScrollBar:vertical {
+    background: #0d0d14;
+    width: 5px;
+    border-radius: 3px;
+}
+
+QScrollBar::handle:vertical {
+    background: #1e1e30;
+    border-radius: 3px;
+    min-height: 30px;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical { height: 0; }
+
+/* ═══════════════════════════════════════
+   INPUTS
+═══════════════════════════════════════ */
+QLineEdit {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 7px;
+    padding: 7px 12px;
+    color: #e2e2e8;
+    font-size: 12px;
+    selection-background-color: #4f46e5;
+}
+
+QLineEdit:focus { border-color: #7c3aed; }
+QLineEdit:hover { border-color: #252535; }
+
+/* ═══════════════════════════════════════
+   COMBOBOX
+═══════════════════════════════════════ */
+QComboBox {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 7px;
+    padding: 7px 12px;
+    color: #e2e2e8;
+    font-size: 12px;
+    min-width: 100px;
+}
+
+QComboBox:hover { border-color: #252535; }
+QComboBox:focus { border-color: #7c3aed; }
+
+QComboBox::drop-down {
+    border: none;
+    width: 24px;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    width: 0; height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #4b5563;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #13131f;
+    border: 1px solid #252535;
+    border-radius: 7px;
+    color: #e2e2e8;
+    selection-background-color: #1e1e3f;
+    selection-color: #a78bfa;
+    padding: 4px;
+    outline: none;
+}
+
+/* ═══════════════════════════════════════
+   CONTENT AREA BUTTONS
+═══════════════════════════════════════ */
+QWidget#pageTransactions QPushButton,
+QWidget#pageCategories QPushButton {
+    background-color: #13131f;
+    border: 1px solid #1e1e30;
+    border-radius: 7px;
+    padding: 6px 14px;
+    color: #6b7280;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+QWidget#pageTransactions QPushButton:hover,
+QWidget#pageCategories QPushButton:hover {
+    background-color: #1a1a2e;
+    color: #c4b5fd;
+    border-color: #2e2e4e;
+}
+
+QPushButton#addBtn {
+    background-color: #4f46e5 !important;
+    border-color: #4f46e5 !important;
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+QPushButton#addBtn:hover {
+    background-color: #4338ca !important;
+    border-color: #4338ca !important;
+}
+
+QPushButton#btnDelete,
+QPushButton#deleteCategoryBtn {
+    background-color: #2a0f0f !important;
+    border-color: rgba(248,113,113,0.3) !important;
+    color: #f87171 !important;
+}
+
+QPushButton#btnDelete:hover,
+QPushButton#deleteCategoryBtn:hover {
+    background-color: #3f1d1d !important;
+    border-color: #f87171 !important;
+}
+
+QPushButton#addCategoryBtn {
+    background-color: #052e1c !important;
+    border-color: rgba(74,222,128,0.3) !important;
+    color: #4ade80 !important;
+}
+
+QPushButton#addCategoryBtn:hover {
+    background-color: #064e3b !important;
+    border-color: #4ade80 !important;
+}
+
+QPushButton#btnExport {
+    background-color: #0c1a2e !important;
+    border-color: rgba(96,165,250,0.3) !important;
+    color: #60a5fa !important;
+}
+
+QPushButton#btnExport:hover {
+    background-color: #1e3a5f !important;
+    border-color: #60a5fa !important;
+}
+
+QPushButton#btnEdit {
+    background-color: #13131f !important;
+    border-color: rgba(167,139,250,0.2) !important;
+    color: #a78bfa !important;
+}
+
+QPushButton#btnEdit:hover {
+    background-color: #1e1e3f !important;
+    border-color: #a78bfa !important;
+}
+
+/* ═══════════════════════════════════════
+   LABELS
+═══════════════════════════════════════ */
+QLabel#recentLabel,
+QLabel#analyticsMonthLabel {
+    font-size: 10px;
+    font-weight: 500;
+    color: #374151;
+    letter-spacing: 0.7px;
+    padding: 6px 0 4px 0;
+}
+
+/* ═══════════════════════════════════════
+   ANALYTICS FRAMES
+═══════════════════════════════════════ */
+QFrame#barChartFrame,
+QFrame#pieChartFrame,
+QFrame#lineChartFrame {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 10px;
+}
+
+/* ═══════════════════════════════════════
+   PROFILE PAGE
+═══════════════════════════════════════ */
+QLabel#profileTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f1f0f8;
+    padding-bottom: 8px;
+}
+
+QFrame#profileCard {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 500px;
+}
+
+QFrame#profileCard QLabel {
+    font-size: 11px;
+    color: #4b5563;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+}
+
+QLabel#profileErrorLabel {
+    color: #f87171;
+    background-color: #2a0f0f;
+    border: 1px solid rgba(248,113,113,0.2);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+QPushButton#profileSaveBtn {
+    background-color: #4f46e5;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+QPushButton#profileSaveBtn:hover {
+    background-color: #4338ca;
+}
+
+/* ═══════════════════════════════════════
+   BACKUP BUTTONS
+═══════════════════════════════════════ */
+QPushButton#backupBtn {
+    background-color: #052e1c !important;
+    border: 1px solid rgba(74,222,128,0.3) !important;
+    color: #4ade80 !important;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 120px;
+}
+
+QPushButton#backupBtn:hover {
+    background-color: #064e3b !important;
+    border-color: #4ade80 !important;
+}
+
+QPushButton#restoreBtn {
+    background-color: #0c1a2e !important;
+    border: 1px solid rgba(96,165,250,0.3) !important;
+    color: #60a5fa !important;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 120px;
+}
+
+QPushButton#restoreBtn:hover {
+    background-color: #1e3a5f !important;
+    border-color: #60a5fa !important;
+}
+
+QLabel#backupSectionLabel {
+    font-size: 11px;
+    color: #4b5563;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    padding-top: 4px;
+}
+
+/* ═══════════════════════════════════════
+   MESSAGE BOX
+═══════════════════════════════════════ */
+QMessageBox {
+    background-color: #0d0d14;
+    color: #e2e2e8;
+}
+
+QMessageBox QPushButton {
+    background-color: #13131f;
+    border: 1px solid #1e1e30;
+    border-radius: 7px;
+    padding: 7px 20px;
+    color: #e2e2e8;
+    min-width: 70px;
+}
+
+QMessageBox QPushButton:hover {
+    background-color: #4f46e5;
+    border-color: #4f46e5;
+}
+
+/* ═══════════════════════════════════════
+   DIALOGS (Login / Register / AddTransaction)
+═══════════════════════════════════════ */
+QDialog {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+}
+
+QDialog QLabel#titleLabel,
+QDialog QLabel#dialogTitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: #a78bfa;
+    padding-bottom: 4px;
+}
+
+QDialog QLabel#subtitleLabel {
+    font-size: 13px;
+    color: #4b5563;
+    padding-bottom: 8px;
+}
+
+QDialog QLabel#errorLabel {
+    color: #f87171;
+    background-color: #2a0f0f;
+    border: 1px solid rgba(248,113,113,0.2);
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-size: 12px;
+}
+
+QDialog QLabel {
+    font-size: 11px;
+    color: #4b5563;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+QDialog QLineEdit {
+    background-color: #080810;
+    border: 1px solid #1a1a28;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #e2e2e8;
+    font-size: 13px;
+}
+
+QDialog QLineEdit:focus { border-color: #7c3aed; }
+
+QDialog QDoubleSpinBox {
+    background-color: #080810;
+    border: 1px solid #1a1a28;
+    border-radius: 8px;
+    padding: 9px 12px;
+    color: #e2e2e8;
+    font-size: 13px;
+}
+
+QDialog QDoubleSpinBox:focus { border-color: #7c3aed; }
+
+QDialog QDoubleSpinBox::up-button,
+QDialog QDoubleSpinBox::down-button {
+    background-color: #13131f;
+    border: none;
+    width: 20px;
+}
+
+QDialog QDoubleSpinBox::up-button:hover,
+QDialog QDoubleSpinBox::down-button:hover {
+    background-color: #1e1e30;
+}
+
+QDialog QComboBox {
+    background-color: #080810;
+    border: 1px solid #1a1a28;
+    border-radius: 8px;
+    padding: 9px 12px;
+    color: #e2e2e8;
+    font-size: 13px;
+}
+
+QDialog QComboBox:focus { border-color: #7c3aed; }
+
+QDialog QDateEdit {
+    background-color: #080810;
+    border: 1px solid #1a1a28;
+    border-radius: 8px;
+    padding: 9px 12px;
+    color: #e2e2e8;
+    font-size: 13px;
+}
+
+QDialog QDateEdit:focus { border-color: #7c3aed; }
+
+QDialog QDateEdit::drop-down {
+    background-color: #13131f;
+    border: none;
+    width: 24px;
+    border-radius: 0 8px 8px 0;
+}
+
+QDialog QPushButton#loginButton,
+QDialog QPushButton#confirmBtn,
+QDialog QPushButton#registerButton {
+    background-color: #4f46e5;
+    border: none;
+    border-radius: 8px;
+    padding: 11px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+QDialog QPushButton#loginButton:hover,
+QDialog QPushButton#confirmBtn:hover,
+QDialog QPushButton#registerButton:hover {
+    background-color: #4338ca;
+}
+
+QDialog QPushButton#cancelBtn,
+QDialog QPushButton#backButton {
+    background-color: transparent;
+    border: 1px solid #1a1a28;
+    border-radius: 8px;
+    padding: 10px;
+    color: #4b5563;
+    font-size: 12px;
+}
+
+QDialog QPushButton#cancelBtn:hover,
+QDialog QPushButton#backButton:hover {
+    background-color: #13131f;
+    color: #9ca3af;
+    border-color: #252535;
+}
+
+QDialog QPushButton#registerButton[flat=&quot;true&quot;] {
+    background-color: transparent;
+    border: none;
+    color: #7c3aed;
+    font-size: 12px;
+    padding: 4px;
+}
+
+QDialog QPushButton#registerButton[flat=&quot;true&quot;]:hover {
+    color: #a78bfa;
+}
+
+QDialog QFrame#divider {
+    color: #1a1a28;
+}
+
+/* ═══════════════════════════════════════
+   NOTES FIELD IN DIALOG
+═══════════════════════════════════════ */
+QDialog QPlainTextEdit {
+    background-color: #080810;
+    border: 1px solid #1a1a28;
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #e2e2e8;
+    font-size: 13px;
+}
+
+QDialog QPlainTextEdit:focus {
+    border-color: #7c3aed;
+}
+
+/* ═══════════════════════════════════════
+   BUDGET BUTTON
+═══════════════════════════════════════ */
+QPushButton#setBudgetBtn {
+    background-color: #1a0f2e !important;
+    border: 1px solid rgba(167,139,250,0.3) !important;
+    color: #a78bfa !important;
+    border-radius: 7px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+QPushButton#setBudgetBtn:hover {
+    background-color: #1e1e3f !important;
+    border-color: #a78bfa !important;
+}
+/* ═══════════════════════════════════════
+   RECURRING PAGE
+═══════════════════════════════════════ */
+QLabel#recurringTitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: #f1f0f8;
+}
+
+QPushButton#addRecurringBtn {
+    background-color: #4f46e5 !important;
+    border-color: #4f46e5 !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border-radius: 7px;
+    padding: 6px 14px;
+}
+
+QPushButton#addRecurringBtn:hover {
+    background-color: #4338ca !important;
+}
+
+QPushButton#deleteRecurringBtn {
+    background-color: #2a0f0f !important;
+    border: 1px solid rgba(248,113,113,0.3) !important;
+    color: #f87171 !important;
+    border-radius: 7px;
+    padding: 6px 14px;
+}
+
+QPushButton#toggleRecurringBtn {
+    background-color: #13131f !important;
+    border: 1px solid rgba(251,191,36,0.3) !important;
+    color: #fbbf24 !important;
+    border-radius: 7px;
+    padding: 6px 14px;
+}
+
+QPushButton#toggleRecurringBtn:hover {
+    background-color: #1f1a0f !important;
+    border-color: #fbbf24 !important;
+}
+
+/* ═══════════════════════════════════════
+   CURRENCY SECTION
+═══════════════════════════════════════ */
+QLabel#currencySectionLabel {
+    font-size: 11px;
+    color: #4b5563;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    padding-top: 4px;
+}
+
+QPushButton#saveCurrencyBtn {
+    background-color: #4f46e5;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 18px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QPushButton#saveCurrencyBtn:hover {
+    background-color: #4338ca;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="mainLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="sidebar">
+      <layout class="QVBoxLayout" name="sidebarLayout">
+       <property name="spacing">
+        <number>8</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="appTitle">
+         <property name="text">
+          <string>💰 ExpenseTracker</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="userLabel">
+         <property name="text">
+          <string>Welcome</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="dashboardBtn">
+         <property name="text">
+          <string>Dashboard</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="transactionsBtn">
+         <property name="text">
+          <string>Transactions</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="categoriesBtn">
+         <property name="text">
+          <string>Categories</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="analyticsBtn">
+         <property name="text">
+          <string>Analytics</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="profileBtn">
+         <property name="text">
+          <string>Profile</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="recurringBtn">
+         <property name="text">
+          <string>Recurring</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="logoutBtn">
+         <property name="text">
+          <string>Logout</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="contentLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QFrame" name="topBar">
+        <layout class="QHBoxLayout" name="topBarLayout">
+         <item>
+          <widget class="QLabel" name="pageTitle">
+           <property name="text">
+            <string>Dashboard</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="topUserLabel">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QStackedWidget" name="stackedWidget">
+        <widget class="QWidget" name="pageDashboard">
+         <layout class="QVBoxLayout" name="dashLayout">
+          <item>
+           <layout class="QHBoxLayout" name="statsLayout">
+            <property name="spacing">
+             <number>15</number>
+            </property>
+            <item>
+             <widget class="QFrame" name="balanceCard">
+              <layout class="QVBoxLayout">
+               <item>
+                <widget class="QLabel" name="balanceTitle">
+                 <property name="text">
+                  <string>Balance</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="balanceValue">
+                 <property name="text">
+                  <string>0.00</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="incomeCard">
+              <layout class="QVBoxLayout">
+               <item>
+                <widget class="QLabel" name="incomeTitle">
+                 <property name="text">
+                  <string>Income</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="incomeValue">
+                 <property name="text">
+                  <string>0.00</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="expenseCard">
+              <layout class="QVBoxLayout">
+               <item>
+                <widget class="QLabel" name="expenseTitle">
+                 <property name="text">
+                  <string>Expenses</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="expenseValue">
+                 <property name="text">
+                  <string>0.00</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="countCard">
+              <layout class="QVBoxLayout">
+               <item>
+                <widget class="QLabel" name="countTitle">
+                 <property name="text">
+                  <string>Transactions</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="countValue">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="recentLabel">
+            <property name="text">
+             <string>Recent Transactions</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="recentTable"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="pageTransactions">
+         <layout class="QVBoxLayout" name="transLayout">
+          <item>
+           <layout class="QHBoxLayout" name="filterLayout">
+            <property name="spacing">
+             <number>8</number>
+            </property>
+            <item>
+             <widget class="QLineEdit" name="searchInput">
+              <property name="placeholderText">
+               <string>Search transactions...</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboType">
+              <item>
+               <property name="text">
+                <string>All</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>income</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>expense</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnReset">
+              <property name="text">
+               <string>Reset</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="addBtn">
+              <property name="text">
+               <string>+ Add</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnEdit">
+              <property name="text">
+               <string>Edit</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnDelete">
+              <property name="text">
+               <string>Delete</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnExport">
+              <property name="text">
+               <string>Export CSV</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="tableTransactions"/>
+          </item>
+          <item>
+           <widget class="QFrame" name="frameSummary">
+            <layout class="QHBoxLayout" name="summaryLayout">
+             <item>
+              <widget class="QLabel" name="lblIncomeTitle">
+               <property name="text">
+                <string>Income:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblIncome">
+               <property name="text">
+                <string>0.00</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblExpenseTitle">
+               <property name="text">
+                <string>Expense:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblExpense">
+               <property name="text">
+                <string>0.00</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblBalanceTitle">
+               <property name="text">
+                <string>Balance:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblBalance">
+               <property name="text">
+                <string>0.00</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer>
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblCount">
+               <property name="text">
+                <string>0 transactions</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="pageCategories">
+         <layout class="QVBoxLayout" name="catLayout">
+          <item>
+           <layout class="QHBoxLayout" name="catStatsLayout">
+            <property name="spacing">
+             <number>15</number>
+            </property>
+            <item>
+             <widget class="QFrame" name="totalCatCard">
+              <layout class="QVBoxLayout">
+               <item>
+                <widget class="QLabel" name="totalCatTitle">
+                 <property name="text">
+                  <string>Total</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="totalCardValue">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="mostUsedCard">
+              <layout class="QVBoxLayout">
+               <item>
+                <widget class="QLabel" name="mostUsedTitle">
+                 <property name="text">
+                  <string>Most Used</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="mostUsedCardValue">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="unusedCard">
+              <layout class="QVBoxLayout">
+               <item>
+                <widget class="QLabel" name="unusedTitle">
+                 <property name="text">
+                  <string>Unused</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="unusedCardValue">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="catInputLayout">
+            <property name="spacing">
+             <number>8</number>
+            </property>
+            <item>
+             <widget class="QLineEdit" name="categoryNameInput">
+              <property name="placeholderText">
+               <string>Category name...</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="categoryTypeCombo">
+              <item>
+               <property name="text">
+                <string>expense</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>income</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="setBudgetBtn">
+              <property name="text">
+               <string>Set Budget</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="addCategoryBtn">
+              <property name="text">
+               <string>+ Add Category</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="deleteCategoryBtn">
+              <property name="text">
+               <string>Delete Selected</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="categoriesTable"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="pageAnalytics">
+         <layout class="QVBoxLayout" name="analyticsLayout">
+          <property name="spacing">
+           <number>16</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="analyticsMonthLabel">
+            <property name="text">
+             <string>Analytics — Current Month</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="chartsTopRow">
+            <property name="spacing">
+             <number>16</number>
+            </property>
+            <item>
+             <widget class="QFrame" name="barChartFrame"/>
+            </item>
+            <item>
+             <widget class="QFrame" name="pieChartFrame"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QFrame" name="lineChartFrame"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="pageProfile">
+         <layout class="QVBoxLayout" name="profileLayout">
+          <property name="spacing">
+           <number>16</number>
+          </property>
+          <property name="leftMargin">
+           <number>40</number>
+          </property>
+          <property name="topMargin">
+           <number>30</number>
+          </property>
+          <property name="rightMargin">
+           <number>40</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="profileTitle">
+            <property name="text">
+             <string>Profile Settings</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="profileCard">
+            <layout class="QVBoxLayout" name="profileCardLayout">
+             <property name="spacing">
+              <number>14</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="profileUsernameLabel">
+               <property name="text">
+                <string>Username</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="profileUsernameEdit"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="profileCurrentPassLabel">
+               <property name="text">
+                <string>Current Password</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="profileCurrentPassEdit">
+               <property name="echoMode">
+                <enum>QLineEdit::EchoMode::Password</enum>
+               </property>
+               <property name="placeholderText">
+                <string>Enter current password...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="profileNewPassLabel">
+               <property name="text">
+                <string>New Password</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="profileNewPassEdit">
+               <property name="echoMode">
+                <enum>QLineEdit::EchoMode::Password</enum>
+               </property>
+               <property name="placeholderText">
+                <string>Enter new password...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="profileConfirmPassLabel">
+               <property name="text">
+                <string>Confirm New Password</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="profileConfirmPassEdit">
+               <property name="echoMode">
+                <enum>QLineEdit::EchoMode::Password</enum>
+               </property>
+               <property name="placeholderText">
+                <string>Confirm new password...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="profileErrorLabel">
+               <property name="visible">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout">
+               <item>
+                <widget class="QPushButton" name="profileSaveBtn">
+                 <property name="text">
+                  <string>Save Changes</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer>
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QFrame" name="profileDivider">
+               <property name="frameShape">
+                <enum>QFrame::Shape::HLine</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Sunken</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="backupSectionLabel">
+               <property name="text">
+                <string>Database Backup</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="backupBtnLayout">
+               <property name="spacing">
+                <number>10</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="backupBtn">
+                 <property name="text">
+                  <string>Export Backup</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="restoreBtn">
+                 <property name="text">
+                  <string>Restore Backup</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="currencyDivider">
+                 <property name="frameShape">
+                  <enum>QFrame::Shape::HLine</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Shadow::Sunken</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="currencySectionLabel">
+                 <property name="text">
+                  <string>Display Currency</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="currencyRowLayout">
+                 <property name="spacing">
+                  <number>10</number>
+                 </property>
+                 <item>
+                  <widget class="QComboBox" name="currencyCombo"/>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="saveCurrencyBtn">
+                   <property name="text">
+                    <string>Apply</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer>
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <spacer>
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Orientation::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="pageRecurring">
+         <layout class="QVBoxLayout" name="recurringLayout">
+          <property name="spacing">
+           <number>12</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="recurringToolbar">
+            <property name="spacing">
+             <number>8</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="recurringTitle">
+              <property name="text">
+               <string>Recurring Transactions</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="addRecurringBtn">
+              <property name="text">
+               <string>+ Add Recurring</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="deleteRecurringBtn">
+              <property name="text">
+               <string>Delete</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="toggleRecurringBtn">
+              <property name="text">
+               <string>Pause / Resume</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="recurringTable"/>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

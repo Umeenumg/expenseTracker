@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddRecurringDialog</class>
+ <widget class="QDialog" name="AddRecurringDialog">
+  <property name="windowTitle"><string>Add Recurring Transaction</string></property>
+  <property name="minimumSize">
+   <size><width>420</width><height>440</height></size>
+  </property>
+  <property name="maximumSize">
+   <size><width>420</width><height>440</height></size>
+  </property>
+
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="spacing"><number>14</number></property>
+   <property name="leftMargin"><number>24</number></property>
+   <property name="topMargin"><number>24</number></property>
+   <property name="rightMargin"><number>24</number></property>
+   <property name="bottomMargin"><number>24</number></property>
+
+   <item>
+    <widget class="QLabel" name="dialogTitle">
+     <property name="text"><string>Add Recurring Transaction</string></property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QFrame" name="divider">
+     <property name="frameShape"><enum>QFrame::HLine</enum></property>
+    </widget>
+   </item>
+
+   <item>
+    <layout class="QVBoxLayout"><property name="spacing"><number>5</number></property>
+     <item><widget class="QLabel" name="titleLbl"><property name="text"><string>Title</string></property></widget></item>
+     <item><widget class="QLineEdit" name="titleEdit"><property name="placeholderText"><string>e.g. Rent, Netflix, Salary...</string></property></widget></item>
+    </layout>
+   </item>
+
+   <item>
+    <layout class="QHBoxLayout"><property name="spacing"><number>12</number></property>
+     <item>
+      <layout class="QVBoxLayout"><property name="spacing"><number>5</number></property>
+       <item><widget class="QLabel" name="amountLbl"><property name="text"><string>Amount</string></property></widget></item>
+       <item><widget class="QDoubleSpinBox" name="amountSpin">
+        <property name="minimum"><double>0.01</double></property>
+        <property name="maximum"><double>999999.99</double></property>
+        <property name="decimals"><number>2</number></property>
+       </widget></item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout"><property name="spacing"><number>5</number></property>
+       <item><widget class="QLabel" name="typeLbl"><property name="text"><string>Type</string></property></widget></item>
+       <item><widget class="QComboBox" name="typeCombo">
+        <item><property name="text"><string>expense</string></property></item>
+        <item><property name="text"><string>income</string></property></item>
+       </widget></item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+
+   <item>
+    <layout class="QHBoxLayout"><property name="spacing"><number>12</number></property>
+     <item>
+      <layout class="QVBoxLayout"><property name="spacing"><number>5</number></property>
+       <item><widget class="QLabel" name="catLbl"><property name="text"><string>Category</string></property></widget></item>
+       <item><widget class="QComboBox" name="categoryCombo"/></item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout"><property name="spacing"><number>5</number></property>
+       <item><widget class="QLabel" name="freqLbl"><property name="text"><string>Frequency</string></property></widget></item>
+       <item><widget class="QComboBox" name="frequencyCombo">
+        <item><property name="text"><string>daily</string></property></item>
+        <item><property name="text"><string>weekly</string></property></item>
+        <item><property name="text"><string>monthly</string></property></item>
+        <item><property name="text"><string>yearly</string></property></item>
+       </widget></item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+
+   <item>
+    <layout class="QVBoxLayout"><property name="spacing"><number>5</number></property>
+     <item><widget class="QLabel" name="startLbl"><property name="text"><string>Start Date</string></property></widget></item>
+     <item><widget class="QDateEdit" name="startDateEdit">
+      <property name="calendarPopup"><bool>true</bool></property>
+      <property name="displayFormat"><string>yyyy-MM-dd</string></property>
+     </widget></item>
+    </layout>
+   </item>
+
+   <item>
+    <layout class="QVBoxLayout"><property name="spacing"><number>5</number></property>
+     <item><widget class="QLabel" name="descLbl"><property name="text"><string>Description</string></property></widget></item>
+     <item><widget class="QLineEdit" name="descEdit"><property name="placeholderText"><string>Optional...</string></property></widget></item>
+    </layout>
+   </item>
+
+   <item>
+    <spacer>
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
+     <property name="sizeHint" stdset="0"><size><width>20</width><height>10</height></size></property>
+    </spacer>
+   </item>
+
+   <item>
+    <layout class="QHBoxLayout"><property name="spacing"><number>10</number></property>
+     <item>
+      <spacer><property name="orientation"><enum>Qt::Horizontal</enum></property>
+       <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+      </spacer>
+     </item>
+     <item><widget class="QPushButton" name="cancelBtn"><property name="text"><string>Cancel</string></property><property name="minimumWidth"><number>90</number></property></widget></item>
+     <item><widget class="QPushButton" name="confirmBtn"><property name="text"><string>Add</string></property><property name="minimumWidth"><number>90</number></property></widget></item>
+    </layout>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
