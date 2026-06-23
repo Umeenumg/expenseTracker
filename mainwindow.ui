@@ -30,6 +30,20 @@ QMainWindow, QDialog, QWidget {
     font-size: 13px;
 }
 
+QDialog {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+}
+
+QToolTip {
+    background-color: #13131f;
+    color: #e2e2e8;
+    border: 1px solid #2e2e4e;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
 /* ═══════════════════════════════════════
    SIDEBAR
 ═══════════════════════════════════════ */
@@ -55,7 +69,6 @@ QLabel#userLabel {
     border-bottom: 1px solid #1a1a28;
 }
 
-/* ── NAV BUTTONS ── */
 QFrame#sidebar QPushButton {
     background-color: transparent;
     border: 1px solid transparent;
@@ -70,14 +83,14 @@ QFrame#sidebar QPushButton {
 QFrame#sidebar QPushButton:hover {
     background-color: #13131f;
     color: #c4b5fd;
-    border-color: transparent;
+    border-color: rgba(167, 139, 250, 0.15);
 }
 
 QFrame#sidebar QPushButton:checked {
     background-color: rgba(124, 58, 237, 0.15);
     color: #a78bfa;
     font-weight: 600;
-    border: 1px solid rgba(167, 139, 250, 0.2);
+    border: 1px solid rgba(167, 139, 250, 0.25);
 }
 
 QFrame#sidebar QPushButton#logoutBtn {
@@ -88,7 +101,7 @@ QFrame#sidebar QPushButton#logoutBtn {
 QFrame#sidebar QPushButton#logoutBtn:hover {
     background-color: #1f0f0f;
     color: #f87171;
-    border-color: rgba(248, 113, 113, 0.15);
+    border-color: rgba(248, 113, 113, 0.2);
 }
 
 /* ═══════════════════════════════════════
@@ -116,7 +129,6 @@ QLabel#topUserLabel {
 /* ═══════════════════════════════════════
    STAT CARDS
 ═══════════════════════════════════════ */
-
 QFrame#balanceCard,
 QFrame#incomeCard,
 QFrame#expenseCard,
@@ -126,9 +138,19 @@ QFrame#mostUsedCard,
 QFrame#unusedCard {
     background-color: #0d0d14;
     border: 1px solid #1a1a28;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 18px 16px;
     min-height: 90px;
+}
+
+QFrame#balanceCard:hover,
+QFrame#incomeCard:hover,
+QFrame#expenseCard:hover,
+QFrame#countCard:hover,
+QFrame#totalCatCard:hover,
+QFrame#mostUsedCard:hover,
+QFrame#unusedCard:hover {
+    border-color: #2e2e4e;
 }
 
 QFrame#balanceCard  { border-top: 2px solid #7c3aed; }
@@ -222,10 +244,16 @@ QHeaderView::section {
 QHeaderView::section:first { border-top-left-radius: 10px; }
 QHeaderView::section:last  { border-top-right-radius: 10px; }
 
+QTableCornerButton::section {
+    background-color: #080810;
+    border: none;
+}
+
 QScrollBar:vertical {
     background: #0d0d14;
-    width: 5px;
+    width: 6px;
     border-radius: 3px;
+    margin: 2px;
 }
 
 QScrollBar::handle:vertical {
@@ -234,11 +262,35 @@ QScrollBar::handle:vertical {
     min-height: 30px;
 }
 
+QScrollBar::handle:vertical:hover {
+    background: #2e2e4e;
+}
+
 QScrollBar::add-line:vertical,
 QScrollBar::sub-line:vertical { height: 0; }
 
+QScrollBar:horizontal {
+    background: #0d0d14;
+    height: 6px;
+    border-radius: 3px;
+    margin: 2px;
+}
+
+QScrollBar::handle:horizontal {
+    background: #1e1e30;
+    border-radius: 3px;
+    min-width: 30px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: #2e2e4e;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal { width: 0; }
+
 /* ═══════════════════════════════════════
-   INPUTS
+   INPUTS (main window)
 ═══════════════════════════════════════ */
 QLineEdit {
     background-color: #0d0d14;
@@ -254,7 +306,7 @@ QLineEdit:focus { border-color: #7c3aed; }
 QLineEdit:hover { border-color: #252535; }
 
 /* ═══════════════════════════════════════
-   COMBOBOX
+   COMBOBOX (main window)
 ═══════════════════════════════════════ */
 QComboBox {
     background-color: #0d0d14;
@@ -294,7 +346,7 @@ QComboBox QAbstractItemView {
 }
 
 /* ═══════════════════════════════════════
-   CONTENT AREA BUTTONS
+   CONTENT AREA BUTTONS (Transactions / Categories)
 ═══════════════════════════════════════ */
 QWidget#pageTransactions QPushButton,
 QWidget#pageCategories QPushButton {
@@ -377,10 +429,11 @@ QPushButton#btnEdit:hover {
 ═══════════════════════════════════════ */
 QLabel#recentLabel,
 QLabel#analyticsMonthLabel {
-    font-size: 10px;
-    font-weight: 500;
-    color: #374151;
-    letter-spacing: 0.7px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b7280;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
     padding: 6px 0 4px 0;
 }
 
@@ -392,7 +445,13 @@ QFrame#pieChartFrame,
 QFrame#lineChartFrame {
     background-color: #0d0d14;
     border: 1px solid #1a1a28;
-    border-radius: 10px;
+    border-radius: 12px;
+}
+
+QFrame#barChartFrame:hover,
+QFrame#pieChartFrame:hover,
+QFrame#lineChartFrame:hover {
+    border-color: #2e2e4e;
 }
 
 /* ═══════════════════════════════════════
@@ -408,7 +467,7 @@ QLabel#profileTitle {
 QFrame#profileCard {
     background-color: #0d0d14;
     border: 1px solid #1a1a28;
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 24px;
     max-width: 500px;
 }
@@ -443,9 +502,26 @@ QPushButton#profileSaveBtn:hover {
     background-color: #4338ca;
 }
 
+QFrame#profileDivider,
+QFrame#currencyDivider {
+    background-color: #1a1a28;
+    max-height: 1px;
+    border: none;
+}
+
 /* ═══════════════════════════════════════
-   BACKUP BUTTONS
+   BACKUP &amp; CURRENCY SECTION
 ═══════════════════════════════════════ */
+QLabel#backupSectionLabel,
+QLabel#currencySectionLabel {
+    font-size: 11px;
+    color: #6b7280;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding-top: 6px;
+}
+
 QPushButton#backupBtn {
     background-color: #052e1c !important;
     border: 1px solid rgba(74,222,128,0.3) !important;
@@ -478,12 +554,19 @@ QPushButton#restoreBtn:hover {
     border-color: #60a5fa !important;
 }
 
-QLabel#backupSectionLabel {
-    font-size: 11px;
-    color: #4b5563;
-    font-weight: 500;
-    letter-spacing: 0.4px;
-    padding-top: 4px;
+QPushButton#saveCurrencyBtn {
+    background-color: #4f46e5;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 18px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 90px;
+}
+
+QPushButton#saveCurrencyBtn:hover {
+    background-color: #4338ca;
 }
 
 /* ═══════════════════════════════════════
@@ -509,13 +592,76 @@ QMessageBox QPushButton:hover {
 }
 
 /* ═══════════════════════════════════════
-   DIALOGS (Login / Register / AddTransaction)
+   BUDGET BUTTON
 ═══════════════════════════════════════ */
-QDialog {
-    background-color: #0d0d14;
-    border: 1px solid #1a1a28;
+QPushButton#setBudgetBtn {
+    background-color: #1a0f2e !important;
+    border: 1px solid rgba(167,139,250,0.3) !important;
+    color: #a78bfa !important;
+    border-radius: 7px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
 }
 
+QPushButton#setBudgetBtn:hover {
+    background-color: #1e1e3f !important;
+    border-color: #a78bfa !important;
+}
+
+/* ═══════════════════════════════════════
+   RECURRING PAGE
+═══════════════════════════════════════ */
+QLabel#recurringTitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: #f1f0f8;
+}
+
+QPushButton#addRecurringBtn {
+    background-color: #4f46e5 !important;
+    border-color: #4f46e5 !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border-radius: 7px;
+    padding: 6px 14px;
+}
+
+QPushButton#addRecurringBtn:hover {
+    background-color: #4338ca !important;
+}
+
+QPushButton#deleteRecurringBtn {
+    background-color: #2a0f0f !important;
+    border: 1px solid rgba(248,113,113,0.3) !important;
+    color: #f87171 !important;
+    border-radius: 7px;
+    padding: 6px 14px;
+}
+
+QPushButton#deleteRecurringBtn:hover {
+    background-color: #3f1d1d !important;
+    border-color: #f87171 !important;
+}
+
+QPushButton#toggleRecurringBtn {
+    background-color: #13131f !important;
+    border: 1px solid rgba(251,191,36,0.3) !important;
+    color: #fbbf24 !important;
+    border-radius: 7px;
+    padding: 6px 14px;
+}
+
+QPushButton#toggleRecurringBtn:hover {
+    background-color: #1f1a0f !important;
+    border-color: #fbbf24 !important;
+}
+
+/* ═══════════════════════════════════════
+   DIALOGS — Login / Register / AddTransaction
+   (titleLabel / dialogTitle shared, scoped to QDialog so
+    main window labels are never affected)
+═══════════════════════════════════════ */
 QDialog QLabel#titleLabel,
 QDialog QLabel#dialogTitle {
     font-size: 20px;
@@ -541,7 +687,7 @@ QDialog QLabel#errorLabel {
 
 QDialog QLabel {
     font-size: 11px;
-    color: #4b5563;
+    color: #6b7280;
     font-weight: 500;
     letter-spacing: 0.3px;
 }
@@ -573,6 +719,7 @@ QDialog QDoubleSpinBox::down-button {
     background-color: #13131f;
     border: none;
     width: 20px;
+    border-radius: 4px;
 }
 
 QDialog QDoubleSpinBox::up-button:hover,
@@ -590,6 +737,21 @@ QDialog QComboBox {
 }
 
 QDialog QComboBox:focus { border-color: #7c3aed; }
+
+QDialog QComboBox::drop-down {
+    border: none;
+    width: 24px;
+}
+
+QDialog QComboBox QAbstractItemView {
+    background-color: #13131f;
+    border: 1px solid #252535;
+    color: #e2e2e8;
+    selection-background-color: #1e1e3f;
+    selection-color: #a78bfa;
+    padding: 4px;
+    outline: none;
+}
 
 QDialog QDateEdit {
     background-color: #080810;
@@ -609,60 +771,6 @@ QDialog QDateEdit::drop-down {
     border-radius: 0 8px 8px 0;
 }
 
-QDialog QPushButton#loginButton,
-QDialog QPushButton#confirmBtn,
-QDialog QPushButton#registerButton {
-    background-color: #4f46e5;
-    border: none;
-    border-radius: 8px;
-    padding: 11px;
-    color: white;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-QDialog QPushButton#loginButton:hover,
-QDialog QPushButton#confirmBtn:hover,
-QDialog QPushButton#registerButton:hover {
-    background-color: #4338ca;
-}
-
-QDialog QPushButton#cancelBtn,
-QDialog QPushButton#backButton {
-    background-color: transparent;
-    border: 1px solid #1a1a28;
-    border-radius: 8px;
-    padding: 10px;
-    color: #4b5563;
-    font-size: 12px;
-}
-
-QDialog QPushButton#cancelBtn:hover,
-QDialog QPushButton#backButton:hover {
-    background-color: #13131f;
-    color: #9ca3af;
-    border-color: #252535;
-}
-
-QDialog QPushButton#registerButton[flat=&quot;true&quot;] {
-    background-color: transparent;
-    border: none;
-    color: #7c3aed;
-    font-size: 12px;
-    padding: 4px;
-}
-
-QDialog QPushButton#registerButton[flat=&quot;true&quot;]:hover {
-    color: #a78bfa;
-}
-
-QDialog QFrame#divider {
-    color: #1a1a28;
-}
-
-/* ═══════════════════════════════════════
-   NOTES FIELD IN DIALOG
-═══════════════════════════════════════ */
 QDialog QPlainTextEdit {
     background-color: #080810;
     border: 1px solid #1a1a28;
@@ -676,90 +784,74 @@ QDialog QPlainTextEdit:focus {
     border-color: #7c3aed;
 }
 
-/* ═══════════════════════════════════════
-   BUDGET BUTTON
-═══════════════════════════════════════ */
-QPushButton#setBudgetBtn {
-    background-color: #1a0f2e !important;
-    border: 1px solid rgba(167,139,250,0.3) !important;
-    color: #a78bfa !important;
-    border-radius: 7px;
-    padding: 6px 14px;
-    font-size: 12px;
-    font-weight: 500;
+QDialog QFrame#divider {
+    background-color: #1a1a28;
+    max-height: 1px;
+    border: none;
 }
 
-QPushButton#setBudgetBtn:hover {
-    background-color: #1e1e3f !important;
-    border-color: #a78bfa !important;
-}
-/* ═══════════════════════════════════════
-   RECURRING PAGE
-═══════════════════════════════════════ */
-QLabel#recurringTitle {
-    font-size: 15px;
-    font-weight: 600;
-    color: #f1f0f8;
-}
-
-QPushButton#addRecurringBtn {
-    background-color: #4f46e5 !important;
-    border-color: #4f46e5 !important;
-    color: white !important;
-    font-weight: 600 !important;
-    border-radius: 7px;
-    padding: 6px 14px;
-}
-
-QPushButton#addRecurringBtn:hover {
-    background-color: #4338ca !important;
-}
-
-QPushButton#deleteRecurringBtn {
-    background-color: #2a0f0f !important;
-    border: 1px solid rgba(248,113,113,0.3) !important;
-    color: #f87171 !important;
-    border-radius: 7px;
-    padding: 6px 14px;
-}
-
-QPushButton#toggleRecurringBtn {
-    background-color: #13131f !important;
-    border: 1px solid rgba(251,191,36,0.3) !important;
-    color: #fbbf24 !important;
-    border-radius: 7px;
-    padding: 6px 14px;
-}
-
-QPushButton#toggleRecurringBtn:hover {
-    background-color: #1f1a0f !important;
-    border-color: #fbbf24 !important;
-}
-
-/* ═══════════════════════════════════════
-   CURRENCY SECTION
-═══════════════════════════════════════ */
-QLabel#currencySectionLabel {
-    font-size: 11px;
-    color: #4b5563;
-    font-weight: 500;
-    letter-spacing: 0.4px;
-    padding-top: 4px;
-}
-
-QPushButton#saveCurrencyBtn {
+/* ── Dialog primary action buttons (Login, Register, Confirm) ── */
+QDialog QPushButton#loginButton,
+QDialog QPushButton#confirmBtn,
+QDialog QPushButton#registerButton {
     background-color: #4f46e5;
     border: none;
     border-radius: 8px;
-    padding: 9px 18px;
+    padding: 11px;
     color: white;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
+    min-height: 20px;
 }
 
-QPushButton#saveCurrencyBtn:hover {
+QDialog QPushButton#loginButton:hover,
+QDialog QPushButton#confirmBtn:hover,
+QDialog QPushButton#registerButton:hover {
     background-color: #4338ca;
-}</string>
+}
+
+QDialog QPushButton#loginButton:pressed,
+QDialog QPushButton#confirmBtn:pressed,
+QDialog QPushButton#registerButton:pressed {
+    background-color: #3730a3;
+}
+
+/* ── Dialog secondary buttons (Cancel, Back) ── */
+QDialog QPushButton#cancelBtn,
+QDialog QPushButton#backButton {
+    background-color: #1a1a28;
+    border: 1px solid #2e2e4e;
+    border-radius: 8px;
+    padding: 10px;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+QDialog QPushButton#cancelBtn:hover,
+QDialog QPushButton#backButton:hover {
+    background-color: #222235;
+    color: #9ca3af;
+    border-color: #3e3e5e;
+}
+
+/* ── Flat &quot;Don't have an account? Register&quot; link button ──
+     IMPORTANT: this overrides the solid #registerButton style above
+     ONLY when the button has the flat=true property set in the .ui
+     (i.e. the link-style register button on the Login screen) */
+QDialog QPushButton#registerButton[flat=&quot;true&quot;] {
+    background-color: transparent;
+    border: none;
+    color: #7c3aed;
+    font-size: 12px;
+    padding: 4px;
+    font-weight: 500;
+    min-height: 0px;
+}
+
+QDialog QPushButton#registerButton[flat=&quot;true&quot;]:hover {
+    color: #a78bfa;
+}
+</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="mainLayout">
@@ -1375,20 +1467,59 @@ QPushButton#saveCurrencyBtn:hover {
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="chartsTopRow">
+           <layout class="QHBoxLayout" name="chartsTopRow" stretch="1,1">
             <property name="spacing">
              <number>16</number>
             </property>
             <item>
-             <widget class="QFrame" name="barChartFrame"/>
+             <widget class="QFrame" name="barChartFrame">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>1</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>280</width>
+                <height>220</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QFrame" name="pieChartFrame"/>
+             <widget class="QFrame" name="pieChartFrame">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>1</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>280</width>
+                <height>220</height>
+               </size>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
           <item>
-           <widget class="QFrame" name="lineChartFrame"/>
+           <widget class="QFrame" name="lineChartFrame">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>1</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>220</height>
+             </size>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -1551,53 +1682,6 @@ QPushButton#saveCurrencyBtn:hover {
                 </widget>
                </item>
                <item>
-                <widget class="QFrame" name="currencyDivider">
-                 <property name="frameShape">
-                  <enum>QFrame::Shape::HLine</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Shadow::Sunken</enum>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="currencySectionLabel">
-                 <property name="text">
-                  <string>Display Currency</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="currencyRowLayout">
-                 <property name="spacing">
-                  <number>10</number>
-                 </property>
-                 <item>
-                  <widget class="QComboBox" name="currencyCombo"/>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="saveCurrencyBtn">
-                   <property name="text">
-                    <string>Apply</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Orientation::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </item>
-               <item>
                 <spacer>
                  <property name="orientation">
                   <enum>Qt::Orientation::Horizontal</enum>
@@ -1609,6 +1693,47 @@ QPushButton#saveCurrencyBtn:hover {
                   </size>
                  </property>
                 </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QFrame" name="currencyDivider">
+               <property name="frameShape">
+                <enum>QFrame::Shape::HLine</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Sunken</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="currencySectionLabel">
+               <property name="text">
+                <string>Display Currency</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="currencyRowLayout">
+               <property name="spacing">
+                <number>10</number>
+               </property>
+               <item>
+                <widget class="QComboBox" name="currencyCombo">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="saveCurrencyBtn">
+                 <property name="text">
+                  <string>Apply</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </item>

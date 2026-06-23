@@ -12,6 +12,11 @@ qt_add_executable(ExpensesTracker
     # ── MAIN ──────────────────────────────
     main.cpp
 
+
+    # ── RESSOURCES ──────────────────────────────
+
+    resources/resources.qrc
+
     # ── MAIN WINDOW ───────────────────────
     MainWindow.h
     MainWindow.cpp
@@ -69,6 +74,8 @@ qt_add_executable(ExpensesTracker
     ui/AddRecurringDialog.h ui/AddRecurringDialog.cpp
     core/currency.h core/currency.cpp
     services/UserSettingsService.h services/UserSettingsService.cpp
+
+
 )
 
 

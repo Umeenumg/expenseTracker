@@ -20,62 +20,838 @@
    <string>Login</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">* {
-    background-color: #0f0f14;
+   <string notr="true">/* ═══════════════════════════════════════
+   BASE
+═══════════════════════════════════════ */
+QMainWindow, QDialog, QWidget {
+    background-color: #0a0a0f;
     color: #e2e2e8;
     font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size: 13px;
 }
+
 QDialog {
-    background-color: #13131a;
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
 }
-QLabel#titleLabel {
-    font-size: 22px;
+
+QToolTip {
+    background-color: #13131f;
+    color: #e2e2e8;
+    border: 1px solid #2e2e4e;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+/* ═══════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════ */
+QFrame#sidebar {
+    background-color: #0d0d14;
+    border-right: 1px solid #1a1a28;
+    min-width: 210px;
+    max-width: 210px;
+}
+
+QLabel#appTitle {
+    font-size: 16px;
     font-weight: 700;
-    color: #a78bfa;
+    color: #ffffff;
+    padding: 20px 16px 4px 16px;
+    letter-spacing: -0.3px;
 }
-QLabel#subtitleLabel {
+
+QLabel#userLabel {
+    font-size: 12px;
+    color: #9ca3af;
+    padding: 4px 16px 16px 16px;
+    border-bottom: 1px solid #1a1a28;
+}
+
+QFrame#sidebar QPushButton {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 9px 12px;
+    text-align: left;
+    color: #6b7280;
+    font-size: 13px;
+    margin: 1px 8px;
+}
+
+QFrame#sidebar QPushButton:hover {
+    background-color: #13131f;
+    color: #c4b5fd;
+    border-color: rgba(167, 139, 250, 0.15);
+}
+
+QFrame#sidebar QPushButton:checked {
+    background-color: rgba(124, 58, 237, 0.15);
+    color: #a78bfa;
+    font-weight: 600;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+}
+
+QFrame#sidebar QPushButton#logoutBtn {
+    color: #4b5563;
+    margin-top: 4px;
+}
+
+QFrame#sidebar QPushButton#logoutBtn:hover {
+    background-color: #1f0f0f;
+    color: #f87171;
+    border-color: rgba(248, 113, 113, 0.2);
+}
+
+/* ═══════════════════════════════════════
+   TOP BAR
+═══════════════════════════════════════ */
+QFrame#topBar {
+    background-color: #0d0d14;
+    border-bottom: 1px solid #1a1a28;
+    min-height: 52px;
+    max-height: 52px;
+    padding: 0 20px;
+}
+
+QLabel#pageTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f1f0f8;
+}
+
+QLabel#topUserLabel {
     font-size: 12px;
     color: #4b5563;
 }
-QLabel#errorLabel {
+
+/* ═══════════════════════════════════════
+   STAT CARDS
+═══════════════════════════════════════ */
+QFrame#balanceCard,
+QFrame#incomeCard,
+QFrame#expenseCard,
+QFrame#countCard,
+QFrame#totalCatCard,
+QFrame#mostUsedCard,
+QFrame#unusedCard {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 12px;
+    padding: 18px 16px;
+    min-height: 90px;
+}
+
+QFrame#balanceCard:hover,
+QFrame#incomeCard:hover,
+QFrame#expenseCard:hover,
+QFrame#countCard:hover,
+QFrame#totalCatCard:hover,
+QFrame#mostUsedCard:hover,
+QFrame#unusedCard:hover {
+    border-color: #2e2e4e;
+}
+
+QFrame#balanceCard  { border-top: 2px solid #7c3aed; }
+QFrame#incomeCard   { border-top: 2px solid #059669; }
+QFrame#expenseCard  { border-top: 2px solid #dc2626; }
+QFrame#countCard    { border-top: 2px solid #2563eb; }
+QFrame#totalCatCard { border-top: 2px solid #2563eb; }
+QFrame#mostUsedCard { border-top: 2px solid #7c3aed; }
+QFrame#unusedCard   { border-top: 2px solid #d97706; }
+
+QFrame#balanceCard  QLabel:first-child,
+QFrame#incomeCard   QLabel:first-child,
+QFrame#expenseCard  QLabel:first-child,
+QFrame#countCard    QLabel:first-child,
+QFrame#totalCatCard QLabel:first-child,
+QFrame#mostUsedCard QLabel:first-child,
+QFrame#unusedCard   QLabel:first-child {
     font-size: 12px;
+    color: #6b7280;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+QFrame#balanceCard  QLabel:last-child { color: #a78bfa; font-size: 26px; font-weight: 700; }
+QFrame#incomeCard   QLabel:last-child { color: #4ade80; font-size: 26px; font-weight: 700; }
+QFrame#expenseCard  QLabel:last-child { color: #f87171; font-size: 26px; font-weight: 700; }
+QFrame#countCard    QLabel:last-child { color: #60a5fa; font-size: 26px; font-weight: 700; }
+QFrame#totalCatCard QLabel:last-child { color: #60a5fa; font-size: 26px; font-weight: 700; }
+QFrame#mostUsedCard QLabel:last-child { color: #a78bfa; font-size: 26px; font-weight: 700; }
+QFrame#unusedCard   QLabel:last-child { color: #fbbf24; font-size: 26px; font-weight: 700; }
+
+/* ═══════════════════════════════════════
+   SUMMARY BAR
+═══════════════════════════════════════ */
+QFrame#frameSummary {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+QLabel#lblIncome  { color: #4ade80; font-weight: 700; font-size: 13px; }
+QLabel#lblExpense { color: #f87171; font-weight: 700; font-size: 13px; }
+QLabel#lblBalance { color: #a78bfa; font-weight: 700; font-size: 13px; }
+QLabel#lblCount   { color: #4b5563; font-size: 12px; }
+QLabel#lblIncomeTitle,
+QLabel#lblExpenseTitle,
+QLabel#lblBalanceTitle { color: #374151; font-size: 12px; }
+
+/* ═══════════════════════════════════════
+   TABLES
+═══════════════════════════════════════ */
+QTableWidget {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 10px;
+    gridline-color: transparent;
+    selection-background-color: #1a1a30;
+    selection-color: #e2e2e8;
+    outline: none;
+}
+
+QTableWidget::item {
+    padding: 10px 12px;
+    border-bottom: 1px solid #111120;
+    color: #6b7280;
+}
+
+QTableWidget::item:selected {
+    background-color: #1a1a30;
+    color: #e2e2e8;
+}
+
+QTableWidget::item:hover {
+    background-color: #0f0f1a;
+    color: #9ca3af;
+}
+
+QHeaderView::section {
+    background-color: #080810;
+    color: #374151;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 8px 12px;
+    border: none;
+    border-bottom: 1px solid #1a1a28;
+    font-weight: 500;
+}
+
+QHeaderView::section:first { border-top-left-radius: 10px; }
+QHeaderView::section:last  { border-top-right-radius: 10px; }
+
+QTableCornerButton::section {
+    background-color: #080810;
+    border: none;
+}
+
+QScrollBar:vertical {
+    background: #0d0d14;
+    width: 6px;
+    border-radius: 3px;
+    margin: 2px;
+}
+
+QScrollBar::handle:vertical {
+    background: #1e1e30;
+    border-radius: 3px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #2e2e4e;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical { height: 0; }
+
+QScrollBar:horizontal {
+    background: #0d0d14;
+    height: 6px;
+    border-radius: 3px;
+    margin: 2px;
+}
+
+QScrollBar::handle:horizontal {
+    background: #1e1e30;
+    border-radius: 3px;
+    min-width: 30px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: #2e2e4e;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal { width: 0; }
+
+/* ═══════════════════════════════════════
+   INPUTS (main window)
+═══════════════════════════════════════ */
+QLineEdit {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 7px;
+    padding: 7px 12px;
+    color: #e2e2e8;
+    font-size: 12px;
+    selection-background-color: #4f46e5;
+}
+
+QLineEdit:focus { border-color: #7c3aed; }
+QLineEdit:hover { border-color: #252535; }
+
+/* ═══════════════════════════════════════
+   COMBOBOX (main window)
+═══════════════════════════════════════ */
+QComboBox {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 7px;
+    padding: 7px 12px;
+    color: #e2e2e8;
+    font-size: 12px;
+    min-width: 100px;
+}
+
+QComboBox:hover { border-color: #252535; }
+QComboBox:focus { border-color: #7c3aed; }
+
+QComboBox::drop-down {
+    border: none;
+    width: 24px;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    width: 0; height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #4b5563;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #13131f;
+    border: 1px solid #252535;
+    border-radius: 7px;
+    color: #e2e2e8;
+    selection-background-color: #1e1e3f;
+    selection-color: #a78bfa;
+    padding: 4px;
+    outline: none;
+}
+
+/* ═══════════════════════════════════════
+   CONTENT AREA BUTTONS (Transactions / Categories)
+═══════════════════════════════════════ */
+QWidget#pageTransactions QPushButton,
+QWidget#pageCategories QPushButton {
+    background-color: #13131f;
+    border: 1px solid #1e1e30;
+    border-radius: 7px;
+    padding: 6px 14px;
+    color: #6b7280;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+QWidget#pageTransactions QPushButton:hover,
+QWidget#pageCategories QPushButton:hover {
+    background-color: #1a1a2e;
+    color: #c4b5fd;
+    border-color: #2e2e4e;
+}
+
+QPushButton#addBtn {
+    background-color: #4f46e5 !important;
+    border-color: #4f46e5 !important;
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+QPushButton#addBtn:hover {
+    background-color: #4338ca !important;
+    border-color: #4338ca !important;
+}
+
+QPushButton#btnDelete,
+QPushButton#deleteCategoryBtn {
+    background-color: #2a0f0f !important;
+    border-color: rgba(248,113,113,0.3) !important;
+    color: #f87171 !important;
+}
+
+QPushButton#btnDelete:hover,
+QPushButton#deleteCategoryBtn:hover {
+    background-color: #3f1d1d !important;
+    border-color: #f87171 !important;
+}
+
+QPushButton#addCategoryBtn {
+    background-color: #052e1c !important;
+    border-color: rgba(74,222,128,0.3) !important;
+    color: #4ade80 !important;
+}
+
+QPushButton#addCategoryBtn:hover {
+    background-color: #064e3b !important;
+    border-color: #4ade80 !important;
+}
+
+QPushButton#btnExport {
+    background-color: #0c1a2e !important;
+    border-color: rgba(96,165,250,0.3) !important;
+    color: #60a5fa !important;
+}
+
+QPushButton#btnExport:hover {
+    background-color: #1e3a5f !important;
+    border-color: #60a5fa !important;
+}
+
+QPushButton#btnEdit {
+    background-color: #13131f !important;
+    border-color: rgba(167,139,250,0.2) !important;
+    color: #a78bfa !important;
+}
+
+QPushButton#btnEdit:hover {
+    background-color: #1e1e3f !important;
+    border-color: #a78bfa !important;
+}
+
+/* ═══════════════════════════════════════
+   LABELS
+═══════════════════════════════════════ */
+QLabel#recentLabel,
+QLabel#analyticsMonthLabel {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b7280;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 6px 0 4px 0;
+}
+
+/* ═══════════════════════════════════════
+   ANALYTICS FRAMES
+═══════════════════════════════════════ */
+QFrame#barChartFrame,
+QFrame#pieChartFrame,
+QFrame#lineChartFrame {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 12px;
+}
+
+QFrame#barChartFrame:hover,
+QFrame#pieChartFrame:hover,
+QFrame#lineChartFrame:hover {
+    border-color: #2e2e4e;
+}
+
+/* ═══════════════════════════════════════
+   PROFILE PAGE
+═══════════════════════════════════════ */
+QLabel#profileTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f1f0f8;
+    padding-bottom: 8px;
+}
+
+QFrame#profileCard {
+    background-color: #0d0d14;
+    border: 1px solid #1a1a28;
+    border-radius: 14px;
+    padding: 24px;
+    max-width: 500px;
+}
+
+QFrame#profileCard QLabel {
+    font-size: 11px;
+    color: #4b5563;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+}
+
+QLabel#profileErrorLabel {
     color: #f87171;
     background-color: #2a0f0f;
-    border: 1px solid rgba(248,113,113,0.25);
+    border: 1px solid rgba(248,113,113,0.2);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+QPushButton#profileSaveBtn {
+    background-color: #4f46e5;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+QPushButton#profileSaveBtn:hover {
+    background-color: #4338ca;
+}
+
+QFrame#profileDivider,
+QFrame#currencyDivider {
+    background-color: #1a1a28;
+    max-height: 1px;
+    border: none;
+}
+
+/* ═══════════════════════════════════════
+   BACKUP &amp; CURRENCY SECTION
+═══════════════════════════════════════ */
+QLabel#backupSectionLabel,
+QLabel#currencySectionLabel {
+    font-size: 11px;
+    color: #6b7280;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding-top: 6px;
+}
+
+QPushButton#backupBtn {
+    background-color: #052e1c !important;
+    border: 1px solid rgba(74,222,128,0.3) !important;
+    color: #4ade80 !important;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 120px;
+}
+
+QPushButton#backupBtn:hover {
+    background-color: #064e3b !important;
+    border-color: #4ade80 !important;
+}
+
+QPushButton#restoreBtn {
+    background-color: #0c1a2e !important;
+    border: 1px solid rgba(96,165,250,0.3) !important;
+    color: #60a5fa !important;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 120px;
+}
+
+QPushButton#restoreBtn:hover {
+    background-color: #1e3a5f !important;
+    border-color: #60a5fa !important;
+}
+
+QPushButton#saveCurrencyBtn {
+    background-color: #4f46e5;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 18px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 90px;
+}
+
+QPushButton#saveCurrencyBtn:hover {
+    background-color: #4338ca;
+}
+
+/* ═══════════════════════════════════════
+   MESSAGE BOX
+═══════════════════════════════════════ */
+QMessageBox {
+    background-color: #0d0d14;
+    color: #e2e2e8;
+}
+
+QMessageBox QPushButton {
+    background-color: #13131f;
+    border: 1px solid #1e1e30;
+    border-radius: 7px;
+    padding: 7px 20px;
+    color: #e2e2e8;
+    min-width: 70px;
+}
+
+QMessageBox QPushButton:hover {
+    background-color: #4f46e5;
+    border-color: #4f46e5;
+}
+
+/* ═══════════════════════════════════════
+   BUDGET BUTTON
+═══════════════════════════════════════ */
+QPushButton#setBudgetBtn {
+    background-color: #1a0f2e !important;
+    border: 1px solid rgba(167,139,250,0.3) !important;
+    color: #a78bfa !important;
+    border-radius: 7px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+QPushButton#setBudgetBtn:hover {
+    background-color: #1e1e3f !important;
+    border-color: #a78bfa !important;
+}
+
+/* ═══════════════════════════════════════
+   RECURRING PAGE
+═══════════════════════════════════════ */
+QLabel#recurringTitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: #f1f0f8;
+}
+
+QPushButton#addRecurringBtn {
+    background-color: #4f46e5 !important;
+    border-color: #4f46e5 !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border-radius: 7px;
+    padding: 6px 14px;
+}
+
+QPushButton#addRecurringBtn:hover {
+    background-color: #4338ca !important;
+}
+
+QPushButton#deleteRecurringBtn {
+    background-color: #2a0f0f !important;
+    border: 1px solid rgba(248,113,113,0.3) !important;
+    color: #f87171 !important;
+    border-radius: 7px;
+    padding: 6px 14px;
+}
+
+QPushButton#deleteRecurringBtn:hover {
+    background-color: #3f1d1d !important;
+    border-color: #f87171 !important;
+}
+
+QPushButton#toggleRecurringBtn {
+    background-color: #13131f !important;
+    border: 1px solid rgba(251,191,36,0.3) !important;
+    color: #fbbf24 !important;
+    border-radius: 7px;
+    padding: 6px 14px;
+}
+
+QPushButton#toggleRecurringBtn:hover {
+    background-color: #1f1a0f !important;
+    border-color: #fbbf24 !important;
+}
+
+/* ═══════════════════════════════════════
+   DIALOGS — Login / Register / AddTransaction
+   (titleLabel / dialogTitle shared, scoped to QDialog so
+    main window labels are never affected)
+═══════════════════════════════════════ */
+QDialog QLabel#titleLabel,
+QDialog QLabel#dialogTitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: #a78bfa;
+    padding-bottom: 4px;
+}
+
+QDialog QLabel#subtitleLabel {
+    font-size: 13px;
+    color: #4b5563;
+    padding-bottom: 8px;
+}
+
+QDialog QLabel#errorLabel {
+    color: #f87171;
+    background-color: #2a0f0f;
+    border: 1px solid rgba(248,113,113,0.2);
     border-radius: 6px;
     padding: 7px 10px;
+    font-size: 12px;
 }
-QLineEdit {
-    background-color: #0f0f14;
-    border: 1px solid #1e1e2e;
+
+QDialog QLabel {
+    font-size: 11px;
+    color: #6b7280;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+QDialog QLineEdit {
+    background-color: #080810;
+    border: 1px solid #1a1a28;
     border-radius: 8px;
     padding: 10px 14px;
     color: #e2e2e8;
     font-size: 13px;
-    min-height: 18px;
 }
-QLineEdit:focus { border-color: #7c3aed; }
-QLineEdit:hover { border-color: #2e2e4e; }
-QPushButton#loginButton {
+
+QDialog QLineEdit:focus { border-color: #7c3aed; }
+
+QDialog QDoubleSpinBox {
+    background-color: #080810;
+    border: 1px solid #1a1a28;
+    border-radius: 8px;
+    padding: 9px 12px;
+    color: #e2e2e8;
+    font-size: 13px;
+}
+
+QDialog QDoubleSpinBox:focus { border-color: #7c3aed; }
+
+QDialog QDoubleSpinBox::up-button,
+QDialog QDoubleSpinBox::down-button {
+    background-color: #13131f;
+    border: none;
+    width: 20px;
+    border-radius: 4px;
+}
+
+QDialog QDoubleSpinBox::up-button:hover,
+QDialog QDoubleSpinBox::down-button:hover {
+    background-color: #1e1e30;
+}
+
+QDialog QComboBox {
+    background-color: #080810;
+    border: 1px solid #1a1a28;
+    border-radius: 8px;
+    padding: 9px 12px;
+    color: #e2e2e8;
+    font-size: 13px;
+}
+
+QDialog QComboBox:focus { border-color: #7c3aed; }
+
+QDialog QComboBox::drop-down {
+    border: none;
+    width: 24px;
+}
+
+QDialog QComboBox QAbstractItemView {
+    background-color: #13131f;
+    border: 1px solid #252535;
+    color: #e2e2e8;
+    selection-background-color: #1e1e3f;
+    selection-color: #a78bfa;
+    padding: 4px;
+    outline: none;
+}
+
+QDialog QDateEdit {
+    background-color: #080810;
+    border: 1px solid #1a1a28;
+    border-radius: 8px;
+    padding: 9px 12px;
+    color: #e2e2e8;
+    font-size: 13px;
+}
+
+QDialog QDateEdit:focus { border-color: #7c3aed; }
+
+QDialog QDateEdit::drop-down {
+    background-color: #13131f;
+    border: none;
+    width: 24px;
+    border-radius: 0 8px 8px 0;
+}
+
+QDialog QPlainTextEdit {
+    background-color: #080810;
+    border: 1px solid #1a1a28;
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #e2e2e8;
+    font-size: 13px;
+}
+
+QDialog QPlainTextEdit:focus {
+    border-color: #7c3aed;
+}
+
+QDialog QFrame#divider {
+    background-color: #1a1a28;
+    max-height: 1px;
+    border: none;
+}
+
+/* ── Dialog primary action buttons (Login, Register, Confirm) ── */
+QDialog QPushButton#loginButton,
+QDialog QPushButton#confirmBtn,
+QDialog QPushButton#registerButton {
     background-color: #4f46e5;
     border: none;
     border-radius: 8px;
     padding: 11px;
     color: white;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     min-height: 20px;
 }
-QPushButton#loginButton:hover { background-color: #4338ca; }
-QPushButton#loginButton:pressed { background-color: #3730a3; }
-QPushButton#registerButton {
+
+QDialog QPushButton#loginButton:hover,
+QDialog QPushButton#confirmBtn:hover,
+QDialog QPushButton#registerButton:hover {
+    background-color: #4338ca;
+}
+
+QDialog QPushButton#loginButton:pressed,
+QDialog QPushButton#confirmBtn:pressed,
+QDialog QPushButton#registerButton:pressed {
+    background-color: #3730a3;
+}
+
+/* ── Dialog secondary buttons (Cancel, Back) ── */
+QDialog QPushButton#cancelBtn,
+QDialog QPushButton#backButton {
+    background-color: #1a1a28;
+    border: 1px solid #2e2e4e;
+    border-radius: 8px;
+    padding: 10px;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+QDialog QPushButton#cancelBtn:hover,
+QDialog QPushButton#backButton:hover {
+    background-color: #222235;
+    color: #9ca3af;
+    border-color: #3e3e5e;
+}
+
+/* ── Flat &quot;Don't have an account? Register&quot; link button ──
+     IMPORTANT: this overrides the solid #registerButton style above
+     ONLY when the button has the flat=true property set in the .ui
+     (i.e. the link-style register button on the Login screen) */
+QDialog QPushButton#registerButton[flat=&quot;true&quot;] {
     background-color: transparent;
     border: none;
     color: #7c3aed;
     font-size: 12px;
     padding: 4px;
+    font-weight: 500;
+    min-height: 0px;
 }
-QPushButton#registerButton:hover { color: #a78bfa; }</string>
+
+QDialog QPushButton#registerButton[flat=&quot;true&quot;]:hover {
+    color: #a78bfa;
+}
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
